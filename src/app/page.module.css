@@ -1,11 +1,16 @@
 .main {
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(237,236,236,0.87718837535014) 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
+
+
 
 .description {
   display: inherit;
@@ -225,5 +230,16 @@
   }
   to {
     transform: rotate(0deg);
+  }
+}
+
+body {
+  overflow-x: hidden; 
+}
+
+@media (max-width: 700px) {
+  .main {
+    padding: 4rem;
+    max-width: 100%; 
   }
 }
