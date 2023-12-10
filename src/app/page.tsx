@@ -152,81 +152,19 @@ export default function Giris() {
       );
   }
 
-  const listText = [
-    "Lorem ipsum dolo: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab doloribus aperiam minus quibusdam minima vel ipsam nihil mollitia, vitae facilis?",
-    "consectetur adipisicing: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut iure ab repellendus ducimus. Aut eaque, corporis distinctio officia, nisi fugiat temporibus necessitatibus totam ipsa quasi dolore praesentium non quis rerum!",
-    "Molestias dignissimos:   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias dignissimos a officiis culpa esse aliquid.",
-    "dignissimos a officiis:  Ut iure ab repellendus ducimus. Aut eaque, corporis distinctio officia, nisi fugiat temporibus necessitatibus totam ipsa quasi dolore praesentium non quis rerum!",
-  ];
+  
 
-  const textItemList = (listText: any) => {
-    return listText.map((item: any, index: any) => (
-      <ListItem key={index} disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            <DoneOutlineIcon htmlColor="#04D69C" />
-          </ListItemIcon>
-          <ListItemText className={classes.listText} primary={item} />
-        </ListItemButton>
-      </ListItem>
-    ));
-  };
 
   return (
     <>
       <Grid container className={classes.main}>
         <Grid
           item
-          md={7}
+          md={12}
           xs={12}
           sm={12}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
         >
-          <Box className={classes.textBox}>
-            <Typography className={classes.entranceTitle}>
-              Welcome to Lorem İpsum!
-            </Typography>
-            <Typography className={classes.descriptionText}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-              necessitatibus totam cupiditate iure, provident blanditiis facilis
-              aspernatur architecto, tempora atque dolorum ea molestiae vero
-              commodi perspiciatis ducimus aliquam maiores nulla! provident blanditiis facilis.
-            </Typography>
-            <Button variant="contained" className={classes.startBtn}>
-              Hemen Kullanmaya Başla
-            </Button>
-          </Box>
-        </Grid>
-        <Grid md={5} xs={12} sm={12}>
-          <Box className={classes.listBox}>
-            <Box className={classes.singleLogo}>
-              <Image
-                src="/image/single-logo.png"
-                width={80}
-                height={80}
-                alt="logo"
-              />
-            </Box>
-
-            <Typography className={classes.titleText}>
-              Lorem ipsum dolor sit amet.
-            </Typography>
-            <List>{textItemList(listText)}</List>
-            <Box className={classes.registerBtns}>
-              <Link href="/kayit-ol">
-                <Button variant="contained" className={classes.registerBtn}>
-                  Kayıt Ol
-                </Button>
-              </Link>
-              <Link href="/giris">
-                <Button variant="outlined" className={classes.loginBtn}>
-                  Giriş Yap
-                </Button>
-              </Link>
-            </Box>
-          </Box>
+          
         </Grid>
       </Grid>
     </>
