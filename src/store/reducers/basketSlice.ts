@@ -18,7 +18,7 @@ const initialState= {
     basket: BasketType[],
 }
 
-const productSlice = createSlice({
+const basketSlice = createSlice({
     name: 'basket',
     initialState,
     reducers: {
@@ -51,6 +51,6 @@ const productSlice = createSlice({
    
 })
 
-export const userSliceActions = { ...productSlice.actions }
+export const basketSliceActions = { ...basketSlice.actions }
 
-export default productSlice.reducer
+export default basketSlice.reducer

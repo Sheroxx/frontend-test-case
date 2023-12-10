@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Head from 'next/head';
+import ReduxProvider from "@/Providers/ReduxProvider";
 
 type Metadata = {
   title: string;
@@ -28,9 +29,15 @@ export default function RootLayout({
         <meta name="description" content={metadata.description} />
       </Head>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <div>
+        <ReduxProvider>
+          <div>
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </ReduxProvider>
+        </div>
       </body>
     </html>
   );

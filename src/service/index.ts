@@ -212,3 +212,7 @@ export const products = [
     ]
   },
 ]
+
+export const menuPages = ["Ana Sayfa", "Hakkımızda", "İletişim"];
+
+export const categories = ["Steak", "Pizza", "Donut", "Vegan", "Kebab", "Pasta"]

@@ -1,3 +1,4 @@
+import { products } from '@/service'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 export type ProductType = {
@@ -13,9 +14,7 @@ export type ProductType = {
 }
 
 const initialState= {
-  products:[
-    
-  ],
+  products: products,
   search:""
 } as {
     products: ProductType[],
@@ -36,6 +35,6 @@ const productSlice = createSlice({
    
 })
 
-export const userSliceActions = { ...productSlice.actions }
+export const productsSliceActions = { ...productSlice.actions }
 
 export default productSlice.reducer

@@ -16,8 +16,12 @@ import { makeStyles } from "@mui/styles";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import productSlice from "@/store/reducers/productSlice";
+import { useDispatch } from "react-redux";
+import basketSlice, { basketSliceActions } from "@/store/reducers/basketSlice";
+import { menuPages } from "@/service";
 
-const pages = ["Ana Sayfa", "Hakkımızda", "İletişim"];
+
 
 const useStyles: any = makeStyles(() => ({
   navbarRoot: {
@@ -113,6 +117,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function ResponsiveAppBar() {
   const classes = useStyles();
+  const dispatch = useDispatch()
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [basketOpen, setBasketOpen] = React.useState(false);
@@ -133,20 +138,45 @@ function ResponsiveAppBar() {
     setBasketOpen(false);
   };
 
-  const renderBasketProducts = (products:any) => {
+ 
+// Sepet ürünleri kısmı
+  React.useEffect(() => {
+
+    let basketItems = localStorage.getItem("basketItems")
+    if(basketItems != null ) {
+     basketItems = JSON.parse(basketItems) 
+     dispatch(basketSliceActions.setBasket(basketItems as any))
+    }
+  }, [])
+  
+
+  const RenderBasketProducts = (products: any) => {
+   
     return (
-        <>
-        <Box>
-        <Image src={products?.imageUrl} alt={products?.imageAlt} />
-        <Typography>{products?.title}</Typography>
-        <Typography>{products?.price} {products?.currency}</Typography>
+      <>
+        <Box
+          style={{
+            position: "absolute",
+            top: "60px",
+            right: "10px",
+            backgroundColor: "#FFF",
+            boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
+            borderRadius: "5px",
+            padding: "10px",
+            zIndex: 1000,
+          }}
+        >
+          <Box>
+            <Image src={products?.imageUrl} alt={products?.imageAlt} />
+            <Typography>{products?.title}</Typography>
+            <Typography>
+              {products?.price} {products?.currency}
+            </Typography>
+          </Box>
         </Box>
-       
-        </> 
-        )
+      </>
+    );
   };
-
-
 
   return (
     <>
@@ -189,9 +219,8 @@ function ResponsiveAppBar() {
                   </Typography>
                 </Box>
                 <List className={classes.listPaperRoot}>
-                  {pages.map((page) => (
+                  {menuPages.map((page) => (
                     <ListItem
-                      button
                       key={page}
                       onClick={handleCloseDrawer}
                       className={classes.drawerItem}
@@ -223,7 +252,7 @@ function ResponsiveAppBar() {
               </Typography>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
+              {menuPages.map((page) => (
                 <Button
                   key={page}
                   onClick={handleCloseBasket}
@@ -255,22 +284,7 @@ function ResponsiveAppBar() {
                 </Badge>
               </Tooltip>
               {basketOpen && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "60px",
-                    right: "10px",
-                    backgroundColor: "#FFF",
-                    boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
-                    borderRadius: "5px",
-                    padding: "10px",
-                    zIndex: 1000,
-                  }}
-                >
-                  <div>
-                  <Typography>burdan devam</Typography>
-                  </div>
-                </div>
+                <RenderBasketProducts />
               )}
             </Box>
           </Toolbar>

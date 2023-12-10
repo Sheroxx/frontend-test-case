@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import List from "@mui/material/List";
@@ -14,158 +14,149 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { NameStateType } from "@/store/store";
 import { type ProductType } from "@/store/reducers/productSlice";
+import { categories } from "@/service";
 
 const useStyles = makeStyles(() => ({
   main: {
-    backgroundImage: 'url("../../image/start-background.jpg")',
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backdropFilter: "blur(10px)",
-  },
-
-  entranceTitle: {
-    fontSize: "44px",
-    padding: "16px",
-    color: "#ffffffff",
-    fontWeight: "600",
-  },
-
-  textBox: {
-    padding: "20px",
-    borderRadius: "20px",
-  },
-
-  descriptionText: {
-    fontSize: "18px",
-    fontWeight: "500",
-    padding: "16px",
-    color: "white",
-  },
-
-  titleText: {
-    fontSize: "24px",
-    fontWeight: "600",
-    color: "#f07818",
-    textAlign: "center",
-  },
-
-  listBox: {
-    background: "#ffffffff",
-    borderRadius: "20px",
-    marginBottom: "15%",
-    marginTop: "15%",
-    paddingTop: "24px",
-    paddingBottom: "24px",
-    paddingLeft: "30px",
-    paddingRight: "30px",
-    marginRight: "5%",
-    marginLeft: "5%",
-  },
-
-  bannerImage: {
-    objectFit: "cover",
-  },
-
-  listText: {
-    fontSize: "16px",
-    fontWeight: "600!important",
-    color: "#000000",
-  },
-
-  startBtn: {
-    color: "#ffffffff",
-    fontWeight: "600",
-    backgroundColor: "#f07818",
-    borderRadius: "10px",
-    padding: "12px 24px 12px 24px",
-    "&:hover": {
-      backgroundColor: "#ffffffff",
-      borderColor: "#ffffffff",
-      color: "#f07818",
-      boxShadow: "none",
-    },
-  },
-
-  singleLogo: {
-    display: "flex",
-    justifyContent: "center",
     marginBottom: "10px",
   },
 
-  loginText: {
+  contentBox: {
+    marginLeft: "80px",
+    marginRight: "80px",
+    margin: "40px",
+  },
+
+  bannerImage: {
+    width: "100%",
+    height: "auto",
+    objectFit: "cover",
+  },
+
+  titleText: {
+    fontSize: "30px",
+    fontWeight: "700",
+  },
+
+  dividerLine: {
+    width: "20%",
+    marginTop: "4px",
+    color: "#1B2326",
+    height: "5px!important",
+  },
+
+  categories: {
+    
+    marginTop: "20px",
+    alignItems: "center",
+    alignContent: "center",
+  },
+
+  categoryBox: {
+    padding: "30px",
+    border: "2px solid #FF4B3A",
+    borderRadius: "10px",
+    pading: "50px",
+    alignItems: "center",
+    alignContent: "center",
+    margin: "10px",
+  },
+
+  categoryNameText: {
+    fontSize: "20px",
+    fontWeight: "500",
+    color: "#1B2326",
+    textAlign: "center",
+  },
+
+  categoryLine:{
     display: "flex",
-    justifyContent: "center",
-    color: "#f07818",
-  },
-
-  registerBtns: {
-    display: "flex",
-    justifyContent: "space-around",
-    marginTop: "10px",
-  },
-
-  registerBtn: {
-    color: "#ffffffff",
-    background: "#f07818",
-    fontSize: "18px",
-    borderColor: "#f07818",
-    borderRadius: "20px",
-    padding: "12px 24px 12px 24px",
-    "&:hover": {
-      backgroundColor: "#e50012A6",
-      color: "#ffffffff",
-      boxShadow: "none",
-    },
-  },
-
-  loginBtn: {
-    color: "#f07818",
-    background: "#ffffffff",
-    fontSize: "18px",
-    borderColor: "#e50012A0",
-    borderRadius: "20px",
-    padding: "12px 24px 12px 24px",
-    "&:hover": {
-      backgroundColor: "#f07818",
-      borderColor: "#e50012A0",
-      color: "#ffffffff",
-      boxShadow: "none",
-    },
+    justifyContent: "space-between",
+    alignContent:'center',
+    alignItems:'center',
+    margin:'auto',
+    
   },
 }));
 
 export default function Giris() {
   const classes = useStyles();
-  
-  const products = useSelector<NameStateType, ProductType[]>(state => state.user.products);
-  const search = useSelector<NameStateType, string>(state => state.user.search);
+
+  const products = useSelector<NameStateType, ProductType[]>(
+    (state) => state.user.products
+  );
+  const search = useSelector<NameStateType, string>(
+    (state) => state.user.search
+  );
 
   const getFilterProducts = () => {
-    if(search.trim() == "") {
+    if (search.trim() == "") {
       return products;
     }
 
-    return products
-      .filter(product => 
-        product.title.toUpperCase().includes(search.toUpperCase()) || product.Restoran.toUpperCase().includes(search.toUpperCase())
-      );
-  }
+    return products.filter(
+      (product) =>
+        product.title.toUpperCase().includes(search.toUpperCase()) ||
+        product.Restoran.toUpperCase().includes(search.toUpperCase())
+    );
+  };
 
-  
-
+  const RenderProductsCategory = () => {
+    return (
+      <>
+        {categories.map((category) => (
+          <Box className={classes.categories} key={category}>
+            <Box className={classes.categoryBox}>
+              <Image
+                src="/image/Burger.svg"
+                width={74}
+                height={60}
+                alt="burger-icon"
+              />
+              <Typography className={classes.categoryNameText}>
+                {category}
+              </Typography>
+            </Box>
+          </Box>
+        ))}
+      </>
+    );
+  };
 
   return (
     <>
       <Grid container className={classes.main}>
-        <Grid
-          item
-          md={12}
-          xs={12}
-          sm={12}
-        >
-          
+        <Grid item md={12}>
+          <Box>
+            <Image
+              src="/image/banner.svg"
+              width={1000}
+              height={1000}
+              alt="banner"
+              className={classes.bannerImage}
+            />
+          </Box>
         </Grid>
+        <Grid item md={12} className={classes.contentBox}>
+          <Box>
+            <Typography variant="h4" className={classes.titleText}>
+              Kategoriler
+            </Typography>
+            <Box
+              sx={{
+                borderBottom: "5px solid #1B2326",
+                width: "20%",
+                marginTop: "4px",
+              }}
+            />
+          </Box>
+          <Grid item md={12} className={classes.categoryLine}>
+          
+        <RenderProductsCategory />
+        </Grid>
+         
+        </Grid>
+        
       </Grid>
     </>
   );
