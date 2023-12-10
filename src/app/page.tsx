@@ -11,6 +11,9 @@ import ListItemText from "@mui/material/ListItemText";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { NameStateType } from "@/store/store";
+import { type ProductType } from "@/store/reducers/productSlice";
 
 const useStyles = makeStyles(() => ({
   main: {
@@ -134,6 +137,20 @@ const useStyles = makeStyles(() => ({
 
 export default function Giris() {
   const classes = useStyles();
+  
+  const products = useSelector<NameStateType, ProductType[]>(state => state.user.products);
+  const search = useSelector<NameStateType, string>(state => state.user.search);
+
+  const getFilterProducts = () => {
+    if(search.trim() == "") {
+      return products;
+    }
+
+    return products
+      .filter(product => 
+        product.title.toUpperCase().includes(search.toUpperCase()) || product.Restoran.toUpperCase().includes(search.toUpperCase())
+      );
+  }
 
   const listText = [
     "Lorem ipsum dolo: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab doloribus aperiam minus quibusdam minima vel ipsam nihil mollitia, vitae facilis?",
