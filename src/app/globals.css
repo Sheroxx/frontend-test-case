@@ -85,7 +85,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #f4f2ee;
+  background: #FFF;
 }
 
 a {
@@ -98,3 +98,9 @@ a {
     color-scheme: dark;
   }
 }
+
+/* styles/globals.css */
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+/* Diğer global stiller */

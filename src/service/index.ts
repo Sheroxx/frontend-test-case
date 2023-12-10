@@ -8,11 +8,11 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/pizza.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/pizza",
+      "/image/food/pizza"
     ]
   },
   {
@@ -22,11 +22,11 @@ export const products = [
     "price": 899,
     "rating": 4.2,
     "currency": "₺",
-    "Restoran": "Pasta Delight",
-    "thumbnail": "https://i.dummyjson.com/data/products/23/thumbnail.jpg",
+    "restoran": "Pasta Delight",
+    "thumbnail": "/image/food/tost.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/23/1.jpg",
-      "https://i.dummyjson.com/data/products/23/2.png"
+      "/image/food/tost.svg",
+      "/image/food/tost.svg"
     ]
   },
   {
@@ -36,11 +36,11 @@ export const products = [
     "price": 1599,
     "rating": 4.9,
     "currency": "₺",
-    "Restoran": "Burger Kingdom",
-    "thumbnail": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+    "restoran": "Burger Kingdom",
+    "thumbnail": "/image/food/pizza.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/7/1.jpg",
-      "https://i.dummyjson.com/data/products/7/2.png"
+      "/image/food/pizza.svg",
+      "/image/food/pizza.svg"
     ]
   },
   {
@@ -50,11 +50,11 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/tost.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/tost.svg",
+      "/image/food/tost.svg"
     ]
   },
   {
@@ -64,11 +64,11 @@ export const products = [
     "price": 50,
     "rating": 4.22,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/tost.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/tost.svg",
+      "/image/food/tost.svg"
     ]
   },
   {
@@ -78,11 +78,11 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/pizza.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/pizza.svg",
+      "/image/food/pizza.svg"
     ]
   },
   {
@@ -92,11 +92,11 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/tost.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/tost.svg",
+      "/image/food/tost.svg"
     ]
   },
   {
@@ -106,11 +106,11 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/tost.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/tost.svg",
+      "/image/food/tost.svg"
     ]
   },
   {
@@ -120,11 +120,11 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/pizza.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/pizza.svg",
+      "/image/food/tost.svg"
     ]
   },
   {
@@ -134,11 +134,11 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/pizza.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/pizza.svg",
+      "/image/food/tost.svg"
     ]
   },
   {
@@ -148,11 +148,11 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/pizza.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/pizza.svg",
+      "/image/food/tost.svg"
     ]
   },
   {
@@ -162,57 +162,52 @@ export const products = [
     "price": 1299,
     "rating": 4.75,
     "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+    "restoran": "Pizza Palace",
+    "thumbnail": "/image/food/pizza.svg",
     "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
-    ]
-  },
-  {
-    "id": 13,
-    "title": "Pepperoni Pizza",
-    "description": "Harika bir pepperoni pizzası deneyimi",
-    "price": 1299,
-    "rating": 4.75,
-    "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
-    "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
-    ]
-  },
-  {
-    "id": 14,
-    "title": "Pepperoni Pizza",
-    "description": "Harika bir pepperoni pizzası deneyimi",
-    "price": 1299,
-    "rating": 4.75,
-    "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
-    "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
-    ]
-  },
-  {
-    "id": 15,
-    "title": "Pepperoni Pizza",
-    "description": "Harika bir pepperoni pizzası deneyimi",
-    "price": 1299,
-    "rating": 4.75,
-    "currency": "₺",
-    "Restoran": "Pizza Palace",
-    "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
-    "images": [
-      "https://i.dummyjson.com/data/products/15/1.jpg",
-      "https://i.dummyjson.com/data/products/15/2.png"
+      "/image/food/pizza.svg",
+      "/image/food/tost.svg"
     ]
   },
 ]
 
 export const menuPages = ["Ana Sayfa", "Hakkımızda", "İletişim"];
 
-export const categories = ["Steak", "Pizza", "Donut", "Vegan", "Kebab", "Pasta"]
+export const categoriesData = [
+  {
+    "id": 1,
+    "name": "Steak",
+    "image": "/image/Burger.svg",
+    "link": "/steak",
+  },
+  {
+    "id": 2,
+    "name": "Pizza",
+    "image": "/image/Pizza.svg",
+    "link": "/pizza",
+  },
+  {
+    "id": 3,
+    "name": "Donut",
+    "image": "/image/Desert.svg",
+    "link": "/donut",
+  },
+  {
+    "id": 4,
+    "name": "Vegan",
+    "image": "/image/Vegan.svg",
+    "link": "/vegan",
+  },
+  {
+    "id": 5,
+    "name": "Kebab",
+    "image": "/image/burger.svg",
+    "link": "/kebab",
+  },
+  {
+    "id": 6,
+    "name": "Pasta",
+    "image": "/image/burger.svg",
+    "link": "/pasta",
+  }
+];

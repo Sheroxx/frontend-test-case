@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux';
 import productReducer from './reducers/productSlice';
+import basketReducer from './reducers/basketSlice';
 
 export const store = configureStore({ 
     reducer: {
-        user: productReducer,
+        product: productReducer,
+        basket: basketReducer,
     } 
 });
 
-export const useAppDispatch = () => useDispatch<typeof store.dispatch>()
+
 export type NameStateType = ReturnType<typeof store.getState>

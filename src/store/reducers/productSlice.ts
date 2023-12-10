@@ -8,7 +8,7 @@ export type ProductType = {
     price: number
     rating: number,
     currency: string,
-    Restoran:  string,
+    restoran:  string,
     thumbnail: string,
     images: string[],
 }

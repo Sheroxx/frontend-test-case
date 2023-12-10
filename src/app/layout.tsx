@@ -5,13 +5,14 @@ import Footer from "./components/Footer";
 import Head from 'next/head';
 import ReduxProvider from "@/Providers/ReduxProvider";
 
+
 type Metadata = {
   title: string;
   description: string;
 };
 
 export const metadata: Metadata = {
-  title: "Restoran",
+  title: "restoran",
   description: "Acıktıysan, bir tık uzağındayız!",
 };
 

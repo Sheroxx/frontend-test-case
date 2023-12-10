@@ -16,12 +16,13 @@ import { makeStyles } from "@mui/styles";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import productSlice from "@/store/reducers/productSlice";
-import { useDispatch } from "react-redux";
+import productSlice, {
+  productsSliceActions,
+} from "@/store/reducers/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 import basketSlice, { basketSliceActions } from "@/store/reducers/basketSlice";
 import { menuPages } from "@/service";
-
-
+import { NameStateType } from "@/store/store";
 
 const useStyles: any = makeStyles(() => ({
   navbarRoot: {
@@ -91,6 +92,44 @@ const useStyles: any = makeStyles(() => ({
     fontWeight: "400",
     color: "#1B2326",
   },
+
+  cartSingleBox: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    gap:10,
+  },
+
+  quantityBox: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding:'0px 10px 0px 10px',
+    alignContent: "center",
+    border: "1px solid rgba(0, 0, 0, 0.50)",
+    borderRadius: "10px",
+  },
+
+  priceText: {
+    color: "#1B2326",
+    fontSize: "14px",
+    fontWeight: "500",
+    padding: "10px",
+    marginRight:'15px',
+  },
+
+  productCardNameText: {
+    fontSize: "14px",
+    fontWeight: "400",
+    color: "#1B2326",
+  },
+
+  basketCardQty: {
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+    alignContent: "center",
+    marginTop: "55px",
+  },
 }));
 
 const Search = styled("div")(({ theme }) => ({
@@ -117,7 +156,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function ResponsiveAppBar() {
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const search = useSelector<NameStateType, string>(
+    (state) => state.product.search
+  );
+  const baskets = useSelector<NameStateType, any[]>(
+    (state) => state.basket.basket
+  );
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [basketOpen, setBasketOpen] = React.useState(false);
@@ -138,40 +184,159 @@ function ResponsiveAppBar() {
     setBasketOpen(false);
   };
 
- 
-// Sepet ürünleri kısmı
+  // Sepet ürünleri kısmı
   React.useEffect(() => {
-
-    let basketItems = localStorage.getItem("basketItems")
-    if(basketItems != null ) {
-     basketItems = JSON.parse(basketItems) 
-     dispatch(basketSliceActions.setBasket(basketItems as any))
+    let basketItems = localStorage.getItem("basketItems");
+    if (basketItems != null) {
+      basketItems = JSON.parse(basketItems);
+      dispatch(basketSliceActions.setBasket(basketItems as any));
     }
-  }, [])
-  
+  }, []);
 
-  const RenderBasketProducts = (products: any) => {
-   
+  console.log("baskets", baskets);
+
+  const RenderBasketProducts = () => {
+    const addBasketItem = (product: any) => {
+      dispatch(basketSliceActions.addBasket(product));
+
+      const basketItems = localStorage.getItem("basketItems");
+      let cardItems = JSON.parse(basketItems as string) as any[];
+
+      const index = cardItems.findIndex((value) => value.id == product.id);
+      cardItems[index].quantity += 1;
+
+      localStorage.setItem("basketItems", JSON.stringify(cardItems));
+    };
+
+    const removeBasketItem = (productIndex: number) => {
+      dispatch(basketSliceActions.removeBasket(productIndex));
+
+      const basketItems = localStorage.getItem("basketItems");
+      let cardItems = JSON.parse(basketItems as string) as any[];
+
+      if (cardItems[productIndex].quantity == 1) {
+        cardItems = cardItems.filter((value, index) => index != productIndex);
+      } else {
+        cardItems[productIndex].quantity -= 1;
+      }
+
+      localStorage.setItem("basketItems", JSON.stringify(cardItems));
+    };
+
+    const getTotalPrice = () => {
+      let basketTotalPrice = 0;
+      baskets.map((value: any, index) => {
+        let singlePriceTotal = value.price * value.quantity;
+        basketTotalPrice = singlePriceTotal + basketTotalPrice;
+      });
+      return basketTotalPrice;
+    };
+
     return (
       <>
         <Box
-          style={{
+          sx={{
+            width: "400px",
+            height: "400px",
+            zIndex: 1000,
+            backgroundColor: "#F6F6F6",
             position: "absolute",
             top: "60px",
-            right: "10px",
-            backgroundColor: "#FFF",
+            right: "20px",
             boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
             borderRadius: "5px",
             padding: "10px",
-            zIndex: 1000,
+            maxHeight: "600px",
+            overflowY: "auto",
+            marginBottom: "120px",
           }}
         >
-          <Box>
-            <Image src={products?.imageUrl} alt={products?.imageAlt} />
-            <Typography>{products?.title}</Typography>
-            <Typography>
-              {products?.price} {products?.currency}
-            </Typography>
+          {baskets?.map((product: any, index) => (
+            <Box key={index} sx={{ my: 2 }}>
+              <Box className={classes.cartSingleBox}>
+                <Image
+                  src={product?.thumbnail}
+                  alt={product?.title + " " + "fotoğrafı"}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{
+                    width: "40%",
+                    height: "auto",
+                    borderRadius: "10px",
+                    objectFit: "contain",
+                  }}
+                />
+                <Box>
+                  <Typography className={classes.productCardNameText}>
+                    {product?.title}
+                  </Typography>
+                  <Box className={classes.basketCardQty}>
+                    <Typography className={classes.priceText}>
+                      {product?.price} {product?.currency}
+                    </Typography>
+                    <Box className={classes.quantityBox}>
+                      <IconButton onClick={() => removeBasketItem(index)}>
+                      <Image
+                          src="/image/trash.svg"
+                          width={15}
+                          height={15}
+                          alt="trash-icon"
+                        />
+                      </IconButton>
+                      <Typography sx={{fontSize:'14px', color:'#1B2326', fontWeight:'500'}}>
+                        {product?.quantity}
+                      </Typography>
+
+                      <IconButton onClick={() => addBasketItem(product)}>
+                        <Image
+                          src="/image/add.svg"
+                          width={15}
+                          height={15}
+                          alt="trash-icon"
+                        />
+                      </IconButton>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          ))}
+          <Box
+            sx={{
+              paddingLeft: "10px",
+              paddingRight: "10px",
+              paddingTop: "40px",
+              background: "#FFF",
+              borderRadius: "10px",
+              padding: "20px",
+            }}
+          >
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography
+                sx={{ color: "#1B2326", fontSize: "22px", fontWeight: "500" }}
+              >
+                Toplam
+              </Typography>
+              <Typography
+                sx={{ color: "#FF4B3A", fontSize: "22px", fontWeight: "500" }}
+              >
+                {getTotalPrice()} ₺
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center", marginTop: "20px" }}>
+              <Button
+                variant="contained"
+                sx={{
+                  background: "#FF4B3A",
+                  textTransform: "capitalize",
+                  width: "80%",
+                  borderRadius: "10px",
+                }}
+              >
+                Sepeti Onayla
+              </Button>
+            </Box>
           </Box>
         </Box>
       </>
@@ -267,7 +432,7 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Sepeti görüntüle">
                 <Badge
-                  badgeContent={4}
+                  badgeContent={baskets.length}
                   color="default"
                   classes={{ badge: classes.basketBadge }}
                 >
@@ -283,9 +448,7 @@ function ResponsiveAppBar() {
                   </Box>
                 </Badge>
               </Tooltip>
-              {basketOpen && (
-                <RenderBasketProducts />
-              )}
+              {basketOpen && <RenderBasketProducts />}
             </Box>
           </Toolbar>
           <Box className={classes.searchInputBox}>
@@ -293,11 +456,16 @@ function ResponsiveAppBar() {
               <StyledInputBase
                 placeholder="Ara"
                 inputProps={{ "aria-label": "search" }}
+                value={search}
+                onChange={(e) =>
+                  dispatch(productsSliceActions.setSearch(e.target.value))
+                }
               />
             </Search>
           </Box>
         </Container>
       </AppBar>
+     
     </>
   );
 }
